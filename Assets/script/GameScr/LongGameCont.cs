@@ -92,7 +92,7 @@ public class LongGameCont : MonoBehaviour
     [SerializeField] GameObject KomaClassObj;
     [SerializeField] GameObject MochigomapreIcon;
     [SerializeField] GameObject MochigomapostIcon;
-    [SerializeField] GameObject CameraObj;
+    [SerializeField] GameObject SoundObj;
 
 
     //playingboard
@@ -449,6 +449,7 @@ public class LongGameCont : MonoBehaviour
     }
     public void moveKoma()
     {
+        SoundObj.GetComponent<MakeSE>().shotMoveSound();
         int tempKoma = temp.ban[prex, prey];
         checkCastling(tempKoma);
         temp.ban[tempx, tempy] = tempKoma;
@@ -479,6 +480,7 @@ public class LongGameCont : MonoBehaviour
     }
 
     void moveShougiKoma() {
+        SoundObj.GetComponent<MakeSE>().shotMoveSound();
         if (player == 1)
         {
             temp.ban[tempx, tempy] =  player1sideHave;
@@ -509,6 +511,8 @@ public class LongGameCont : MonoBehaviour
 
     public void killKoma()
     {
+        SoundObj.GetComponent<MakeSE>().shotMoveSound();
+
         checkCastling(temp.ban[prex, prey]);
         killedObj = tempGameObj[tempx, tempy];
         killedObjNum = temp.ban[tempx,tempy];
@@ -962,7 +966,7 @@ public class LongGameCont : MonoBehaviour
             {
                 if (player * temp.ban[i, j] == -6 || player * temp.ban[i, j] == -18 || player * temp.ban[i, j] == -27)
                 {
-                    if (!LongKomaClass.checkCheckmait(i, j)) {  GameObject ContPlayCanvasObj = GameObject.Find("ContCanvasObj"); ContPlayCanvasObj.GetComponent<ContPlayCanvas>().openCheckModal(); }
+                    if (!LongKomaClass.checkCheckmait(i, j)) {  GameObject ContPlayCanvasObj = GameObject.Find("ContCanvasObj"); ContPlayCanvasObj.GetComponent<ContPlayCanvas>().openCheckModal(); SoundObj.GetComponent<MakeSE>().shotCheckSound();}
                     break;
                 }
 

@@ -92,8 +92,8 @@ public class ShortGameCont : MonoBehaviour
     [SerializeField] GameObject KomaClassObj;
     [SerializeField] GameObject MochigomapreIcon;
     [SerializeField] GameObject MochigomapostIcon;
-    [SerializeField] GameObject CameraObj;
     [SerializeField] GameObject ShortObjCollection;
+    [SerializeField] GameObject SoundObj;
 
 
     //playingboard
@@ -140,21 +140,6 @@ public class ShortGameCont : MonoBehaviour
     //Color
     Color noColor = new Color(0.0f, 0.0f, 0.0f, 0.0f);
     Color whiteGray = new Color(0.9f, 0.9f, 0.9f, 1.0f);
-    private void Awake()
-    {
-
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-    void Update()
-    {
-
-
-    }
     public void startSetUp() 
     {
         temp = new ShortBoard();
@@ -326,7 +311,6 @@ public class ShortGameCont : MonoBehaviour
         else if (shougiplayer2clicked && face.ban[tempx, tempy] == -1 && player == -1) { checkLast(); moveShougiKoma(); endturn(); }
         else
         {
-            
             if (face.ban[tempx, tempy] == 1 && player == 1) { checkLast(); moveKoma(); }
             else if (face.ban[tempx, tempy] == 2 && player == 1) { checkLast(); killKoma(); }
             else if (face.ban[tempx, tempy] == -1 && player == -1) { checkLast(); moveKoma(); }
@@ -409,6 +393,8 @@ public class ShortGameCont : MonoBehaviour
     }
     public void moveKoma()
     {
+        SoundObj.GetComponent<MakeSE>().shotMoveSound();
+
         int tempKoma = temp.ban[prex, prey];
         checkCastling(tempKoma);
         temp.ban[tempx, tempy] = tempKoma;
@@ -440,6 +426,8 @@ public class ShortGameCont : MonoBehaviour
 
     void moveShougiKoma()
     {
+        
+        SoundObj.GetComponent<MakeSE>().shotMoveSound();
         if (player == 1)
         {
             temp.ban[tempx, tempy] = player1sideHave;
@@ -470,6 +458,9 @@ public class ShortGameCont : MonoBehaviour
 
     public void killKoma()
     {
+        
+        SoundObj.GetComponent<MakeSE>().shotMoveSound();
+
         checkCastling(temp.ban[prex, prey]);
         killedObj = tempGameObj[tempx, tempy];
         killedObjNum = temp.ban[tempx, tempy];
@@ -871,7 +862,7 @@ public class ShortGameCont : MonoBehaviour
             {
                 if (player*temp.ban[i, j] == -6 || player * temp.ban[i, j] == -18 || player * temp.ban[i, j] == -27) 
                 {
-                    if (!ShortKomaClass.checkCheckmait(i, j)) { GameObject ContPlayCanvasObj = GameObject.Find("ContCanvasObj"); ContPlayCanvasObj.GetComponent<ContPlayCanvas>().openCheckModal(); }
+                    if (!ShortKomaClass.checkCheckmait(i, j)) { GameObject ContPlayCanvasObj = GameObject.Find("ContCanvasObj"); ContPlayCanvasObj.GetComponent<ContPlayCanvas>().openCheckModal(); SoundObj.GetComponent<MakeSE>().shotCheckSound();}
                     break;
                 }
 

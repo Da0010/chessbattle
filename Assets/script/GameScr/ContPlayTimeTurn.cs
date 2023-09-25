@@ -15,6 +15,7 @@ public class ContPlayTimeTurn : MonoBehaviour
 
     [SerializeField] GameObject LongObjCollection;
     [SerializeField] GameObject ShortObjCollection;
+    [SerializeField] GameObject SoundObj;
 
 
 
@@ -69,6 +70,7 @@ public class ContPlayTimeTurn : MonoBehaviour
                     totalTimeP1 -= Time.deltaTime;
                     seconds = (int)totalTimeP1;
                     string fu = "";
+                    if (seconds == 0) {SoundObj.GetComponent<MakeSE>().shotTimeOverSound();}
                     if (seconds < 0) { fu = "-"; timerTextP1.color = Color.red; }
                     else { fu = ""; timerTextP1.color = Color.white; }
                     string tempM = Math.Abs(seconds / 60).ToString("D2");
@@ -80,6 +82,7 @@ public class ContPlayTimeTurn : MonoBehaviour
                     totalTimeP2 -= Time.deltaTime;
                     seconds = (int)totalTimeP2;
                     string fu = "";
+                    if (seconds == 0) {SoundObj.GetComponent<MakeSE>().shotTimeOverSound();}
                     if (seconds < 0) { fu = "-"; timerTextP2.color = Color.red; }
                     else { fu = ""; timerTextP2.color = Color.white; }
                     string tempM = Math.Abs(seconds / 60).ToString("D2");
@@ -292,7 +295,6 @@ public class ContPlayTimeTurn : MonoBehaviour
         }
         else 
         {
-            //koko
             ShortGameCont tempShortClass = ShortGameContObj.GetComponent<ShortGameCont>();
 
             tempShortClass.changeTurn = true;

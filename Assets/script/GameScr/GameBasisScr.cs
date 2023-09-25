@@ -16,6 +16,7 @@ public class GameBasisScr : MonoBehaviour
     [SerializeField] GameObject TTObj;
     [SerializeField] GameObject LGObj;
     [SerializeField] GameObject SGObj;
+    [SerializeField] GameObject SoundObj;
 
 
     public GameObject getObjByNum(int n)
@@ -153,6 +154,7 @@ public class GameBasisScr : MonoBehaviour
         StartCoroutine(DelayMethod(timeInvoke, () =>
         {
             DEObj.GetComponent<DestroyEffect>().showDEByObj(DO, tempType, tempColor);
+            //SoundObj.GetComponent<MakeSE>().shotKilledSound();
         }));
     }
     private IEnumerator DelayMethod(float waitTime, Action action)

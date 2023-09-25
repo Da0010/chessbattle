@@ -871,7 +871,7 @@ public class ShortGameCont : MonoBehaviour
             {
                 if (player*temp.ban[i, j] == -6 || player * temp.ban[i, j] == -18 || player * temp.ban[i, j] == -27) 
                 {
-                    if (!ShortKomaClass.checkCheckmait(i, j)) { Debug.Log("hyouzi"); GameObject ContPlayCanvasObj = GameObject.Find("ContCanvasObj"); ContPlayCanvasObj.GetComponent<ContPlayCanvas>().openCheckModal(); }
+                    if (!ShortKomaClass.checkCheckmait(i, j)) { GameObject ContPlayCanvasObj = GameObject.Find("ContCanvasObj"); ContPlayCanvasObj.GetComponent<ContPlayCanvas>().openCheckModal(); }
                     break;
                 }
 

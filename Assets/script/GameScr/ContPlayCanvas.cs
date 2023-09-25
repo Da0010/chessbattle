@@ -23,6 +23,7 @@ public class ContPlayCanvas : MonoBehaviour
     [SerializeField] GameObject ShortGameContObj;
     [SerializeField] GameObject LongObjCollection;
     [SerializeField] GameObject ShortObjCollection;
+    [SerializeField] GameObject CameraObj;
 
     public int gt = 9;
 
@@ -97,6 +98,7 @@ public class ContPlayCanvas : MonoBehaviour
         bottomPanel.SetActive(true);
         GamePanel.SetActive(false);
         homeCanvas.SetActive(true);
+        CameraObj.GetComponent<CameraCont>().resetCamera();
     }
     public void subSaveClicked()
     {

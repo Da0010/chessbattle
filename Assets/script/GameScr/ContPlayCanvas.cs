@@ -72,19 +72,16 @@ public class ContPlayCanvas : MonoBehaviour
 
     public void openCheckModal()
     {
-
         checkModal.GetComponent<NotificationManager>().OpenNotification();
     }
     public void saveModalClicked() 
     {
-        if (homeOpen) { homeModal.GetComponent<ModalWindowManager>().CloseWindow(); homeOpen = false; bottomPanel.SetActive(true); }
         if (saveOpen) { saveModal.GetComponent<ModalWindowManager>().CloseWindow(); saveOpen = false;restartTime();bottomPanel.SetActive(true); }
         else { saveModal.GetComponent<ModalWindowManager>().OpenWindow(); saveOpen = true; stopTime(); bottomPanel.SetActive(false); }
 
     }
     public void homeModalClicked()
     {
-        if (saveOpen) { saveModal.GetComponent<ModalWindowManager>().CloseWindow(); saveOpen = false; bottomPanel.SetActive(true); }
         if (homeOpen) { homeModal.GetComponent<ModalWindowManager>().CloseWindow(); homeOpen = false; restartTime(); bottomPanel.SetActive(true); }
         else { homeModal.GetComponent<ModalWindowManager>().OpenWindow(); homeOpen = true; stopTime(); bottomPanel.SetActive(false);}
     }
@@ -93,10 +90,6 @@ public class ContPlayCanvas : MonoBehaviour
         deleteAllmodal();
         homeOpen = false;
         saveOpen = false;
-        /* 
-        GameContObj.GetComponent<GameCont>().recordplaying = null;
-        GameContObj.GetComponent<GameCont>().temp = null;
-        GameContObj.GetComponent<GameCont>().tempJson = null;*/
         LongObjCollection.SetActive(false);
         ShortObjCollection.SetActive(false);
         LongGameContObj.SetActive(false);
@@ -107,13 +100,12 @@ public class ContPlayCanvas : MonoBehaviour
     }
     public void subSaveClicked()
     {
-        homeModal.GetComponent<ModalWindowManager>().CloseWindow();
-        saveOpen = false;
+        if (homeOpen){homeModal.GetComponent<ModalWindowManager>().CloseWindow();homeOpen =false;}
         saveModalClicked();
     }
     public void subRetryClicked()
     {
-        homeModalClicked();
+        //homeModalClicked();
         ContPlayTimeObj.GetComponent<ContPlayTimeTurn>().showBeforeRecord();
         endModal.GetComponent<ModalWindowManager>().CloseWindow();
     }

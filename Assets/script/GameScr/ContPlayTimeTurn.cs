@@ -287,23 +287,6 @@ public class ContPlayTimeTurn : MonoBehaviour
 
                 }
             }
-            /*
-            totalTimeP1 = tempLongClass.recordplaying.P1sideTime[turn];
-            totalTimeP2 = tempLongClass.recordplaying.P2sideTime[turn];
-            seconds = (int)totalTimeP1;
-            string fu = "";
-            if (seconds < 0) { fu = "-"; timerTextP1.color = Color.red; }
-            else { fu = ""; timerTextP1.color = Color.white; }
-            string tempM = Math.Abs(seconds / 60).ToString("D2");
-            string tempS = Math.Abs(seconds % 60).ToString("D2");
-            timerTextP1.text = fu + tempM + ":" + tempS;
-            seconds = (int)totalTimeP2;
-            fu = "";
-            if (seconds < 0) { fu = "-"; timerTextP2.color = Color.red; }
-            else { fu = ""; timerTextP2.color = Color.white; }
-            tempM = Math.Abs(seconds / 60).ToString("D2");
-            tempS = Math.Abs(seconds % 60).ToString("D2");
-            timerTextP2.text = fu + tempM + ":" + tempS;*/
             checkBeforeNext();
             stoptimer();
         }
@@ -359,23 +342,6 @@ public class ContPlayTimeTurn : MonoBehaviour
 
                 }
             }
-            /*
-            totalTimeP1 = tempShortClass.recordplaying.P1sideTime[turn];
-            totalTimeP2 = tempShortClass.recordplaying.P2sideTime[turn];
-            seconds = (int)totalTimeP1;
-            string fu = "";
-            if (seconds < 0) { fu = "-"; timerTextP1.color = Color.red; }
-            else { fu = ""; timerTextP1.color = Color.white; }
-            string tempM = Math.Abs(seconds / 60).ToString("D2");
-            string tempS = Math.Abs(seconds % 60).ToString("D2");
-            timerTextP1.text = fu + tempM + ":" + tempS;
-            seconds = (int)totalTimeP2;
-            fu = "";
-            if (seconds < 0) { fu = "-"; timerTextP2.color = Color.red; }
-            else { fu = ""; timerTextP2.color = Color.white; }
-            tempM = Math.Abs(seconds / 60).ToString("D2");
-            tempS = Math.Abs(seconds % 60).ToString("D2");
-            timerTextP2.text = fu + tempM + ":" + tempS;*/
             checkBeforeNext();
             stoptimer();
         }

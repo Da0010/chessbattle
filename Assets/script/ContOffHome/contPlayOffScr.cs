@@ -24,6 +24,8 @@ public class contPlayOffScr : MonoBehaviour
     int Time = 1000;
     int FPlayer = 1;
 
+    int gt = 6;
+
 
     [SerializeField] GameObject ContPlayTimeObj;
     // Start is called before the first frame update
@@ -34,34 +36,81 @@ public class contPlayOffScr : MonoBehaviour
 
     public void clickShort()
     {
-        shortGame.SetActive(true);
+        gt = 6;
         shortGameRing.SetActive(true);
-        longGame.SetActive(false);
         longGameRing.SetActive(false);
     }
 
     public void clickLong()
     {
-        shortGame.SetActive(false);
+        gt = 9;
         shortGameRing.SetActive(false);
-        longGame.SetActive(true);
         longGameRing.SetActive(true);
         
     }
-
-    public void clickLongPlay()
+    public void clickPlay()
     {
         mainCanvas.SetActive(false);
         gamePanel.SetActive(true);
         CameraObj.GetComponent<CameraCont>().resetCamera();
-        ContPlayTimeObj.GetComponent<ContPlayTimeTurn>().startGame(Player1Deck, Player2Deck, Time * 60, FPlayer,9);
+        ContPlayTimeObj.GetComponent<ContPlayTimeTurn>().startGame(Player1Deck, Player2Deck, Time * 60, FPlayer, gt);
     }
-    public void clickShortPlay()
+
+        public void clickPlayer1Deck0()
     {
-        mainCanvas.SetActive(false);
-        gamePanel.SetActive(true);
-        CameraObj.GetComponent<CameraCont>().resetCamera();
-        ContPlayTimeObj.GetComponent<ContPlayTimeTurn>().startGame(Player1Deck, Player2Deck, Time * 60, FPlayer, 6);
+        Player1Deck = 0;
+    }
+    public void clickPlayer1Deck1()
+    {
+        Player1Deck = 1;
+    }
+    public void clickPlayer1Deck2()
+    {
+        Player1Deck = 2;
+    }
+    public void clickPlayer1Deck3()
+    {
+        Player1Deck = 3;
+    }
+    public void clickPlayer1Deck4()
+    {
+        Player1Deck = 4;
+    }
+    public void clickPlayer1Deck5()
+    {
+        Player1Deck = 5;
+    }
+    public void clickPlayer1Deck6()
+    {
+        Player1Deck = 6;
+    }
+    public void clickPlayer2Deck0()
+    {
+        Player2Deck = 0;
+    }
+    public void clickPlayer2Deck1()
+    {
+        Player2Deck = 1;
+    }
+    public void clickPlayer2Deck2()
+    {
+        Player2Deck = 2;
+    }
+    public void clickPlayer2Deck3()
+    {
+        Player2Deck = 3;
+    }
+    public void clickPlayer2Deck4()
+    {
+        Player2Deck = 4;
+    }
+    public void clickPlayer2Deck5()
+    {
+        Player2Deck = 5;
+    }
+    public void clickPlayer2Deck6()
+    {
+        Player2Deck = 6;
     }
 
     public void clickFplayer1()

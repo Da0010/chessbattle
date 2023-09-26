@@ -17,17 +17,14 @@ public class ContPlayTimeTurn : MonoBehaviour
     [SerializeField] GameObject ShortObjCollection;
     [SerializeField] GameObject SoundObj;
 
-
-
-    //
-    public LongBoard Longtemp;
     public float time = 1F;
-    public LongBoard face;//show possible masu
 
     public int turn = -1;
-    public int gt = 9;
+    public int gt = 6;
 
     int tempPlayer = 0;
+    bool P1TimeOver = false;
+    bool P2TimeOver = false;
 
 
 
@@ -67,8 +64,10 @@ public class ContPlayTimeTurn : MonoBehaviour
                     totalTimeP1 -= Time.deltaTime;
                     seconds = (int)totalTimeP1;
                     string fu = "";
-                    if (seconds == 0) {SoundObj.GetComponent<MakeSE>().shotTimeOverSound();}
-                    if (seconds < 0) { fu = "-"; timerTextP1.color = Color.red; }
+                    if (seconds < 0) { 
+                        if (!P1TimeOver){P1TimeOver = true; SoundObj.GetComponent<MakeSE>().shotTimeOverSound();} 
+                        fu = "-"; timerTextP1.color = Color.red;    
+                    }
                     else { fu = ""; timerTextP1.color = Color.white; }
                     string tempM = Math.Abs(seconds / 60).ToString("D2");
                     string tempS = Math.Abs(seconds % 60).ToString("D2");
@@ -79,8 +78,10 @@ public class ContPlayTimeTurn : MonoBehaviour
                     totalTimeP2 -= Time.deltaTime;
                     seconds = (int)totalTimeP2;
                     string fu = "";
-                    if (seconds == 0) {SoundObj.GetComponent<MakeSE>().shotTimeOverSound();}
-                    if (seconds < 0) { fu = "-"; timerTextP2.color = Color.red; }
+                    if (seconds < 0) {
+                        fu = "-"; timerTextP2.color = Color.red;
+                        if (!P2TimeOver){P2TimeOver = true; SoundObj.GetComponent<MakeSE>().shotTimeOverSound();}      
+                    }
                     else { fu = ""; timerTextP2.color = Color.white; }
                     string tempM = Math.Abs(seconds / 60).ToString("D2");
                     string tempS = Math.Abs(seconds % 60).ToString("D2");
@@ -125,6 +126,8 @@ public class ContPlayTimeTurn : MonoBehaviour
         string tempS = Math.Abs(seconds % 60).ToString("D2");
         timerTextP1.text = tempM + ":" + tempS;
         timerTextP2.text = tempM + ":" + tempS;
+        P1TimeOver = false;
+        P2TimeOver = false;
         if (gt == 9)
         {
             LongGameContObj.SetActive(true); LongGameContObj.GetComponent<LongGameCont>().startMainGame(p1Deck, p2Deck, Fplayer, gt);
@@ -236,6 +239,8 @@ public class ContPlayTimeTurn : MonoBehaviour
 
     void showRecord() 
     {
+        P1TimeOver = false;
+        P2TimeOver = false;
 
 
         if (gt == 9)

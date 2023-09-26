@@ -123,7 +123,7 @@ public class contPlayOffScr : MonoBehaviour
     }
     public void clickTime5()
     {
-        Time = 1;
+        Time = 5;
     }
     public void clickTime10()
     {

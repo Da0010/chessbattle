@@ -16,6 +16,7 @@ public class contPlayOffScr : MonoBehaviour
     [SerializeField] GameObject gamePanel;
     [SerializeField] GameObject LongObjCollection;
     [SerializeField] GameObject ShortObjCollection;
+    [SerializeField] GameObject CameraObj;
 
 
     int Player1Deck = 0;
@@ -52,72 +53,15 @@ public class contPlayOffScr : MonoBehaviour
     {
         mainCanvas.SetActive(false);
         gamePanel.SetActive(true);
-        
+        CameraObj.GetComponent<CameraCont>().resetCamera();
         ContPlayTimeObj.GetComponent<ContPlayTimeTurn>().startGame(Player1Deck, Player2Deck, Time * 60, FPlayer,9);
     }
     public void clickShortPlay()
     {
         mainCanvas.SetActive(false);
         gamePanel.SetActive(true);
-        
+        CameraObj.GetComponent<CameraCont>().resetCamera();
         ContPlayTimeObj.GetComponent<ContPlayTimeTurn>().startGame(Player1Deck, Player2Deck, Time * 60, FPlayer, 6);
-    }
-
-    public void clickPlayer1Deck0()
-    {
-        Player1Deck = 0;
-    }
-    public void clickPlayer1Deck1()
-    {
-        Player1Deck = 1;
-    }
-    public void clickPlayer1Deck2()
-    {
-        Player1Deck = 2;
-    }
-    public void clickPlayer1Deck3()
-    {
-        Player1Deck = 3;
-    }
-    public void clickPlayer1Deck4()
-    {
-        Player1Deck = 4;
-    }
-    public void clickPlayer1Deck5()
-    {
-        Player1Deck = 5;
-    }
-    public void clickPlayer1Deck6()
-    {
-        Player1Deck = 6;
-    }
-    public void clickPlayer2Deck0()
-    {
-        Player2Deck = 0;
-    }
-    public void clickPlayer2Deck1()
-    {
-        Player2Deck = 1;
-    }
-    public void clickPlayer2Deck2()
-    {
-        Player2Deck = 2;
-    }
-    public void clickPlayer2Deck3()
-    {
-        Player2Deck = 3;
-    }
-    public void clickPlayer2Deck4()
-    {
-        Player2Deck = 4;
-    }
-    public void clickPlayer2Deck5()
-    {
-        Player2Deck = 5;
-    }
-    public void clickPlayer2Deck6()
-    {
-        Player2Deck = 6;
     }
 
     public void clickFplayer1()
@@ -168,6 +112,7 @@ public class contPlayOffScr : MonoBehaviour
 
     public void loadSlot(int i)
     {
+        CameraObj.GetComponent<CameraCont>().resetCamera();
         ContPlayTimeObj.GetComponent<ContPlayTimeTurn>().loadRecord(i);
         gamePanel.SetActive(true);
         mainCanvas.SetActive(false);

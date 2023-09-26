@@ -54,12 +54,6 @@ public class ContPlayTimeTurn : MonoBehaviour
     //Color
     Color noColor = new Color(0.0f, 0.0f, 0.0f, 0.0f);
     Color whiteGray = new Color(0.9f, 0.9f, 0.9f, 1.0f);
-    // Start is called before the first frame update
-    void Start()
-    {
-       
-    }
-
     // Update is called once per frame
     void Update()
     {

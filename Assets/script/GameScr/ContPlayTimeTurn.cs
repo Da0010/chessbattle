@@ -27,6 +27,8 @@ public class ContPlayTimeTurn : MonoBehaviour
     public int turn = -1;
     public int gt = 9;
 
+    int tempPlayer = 0;
+
 
 
 
@@ -61,11 +63,12 @@ public class ContPlayTimeTurn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (totalTimeP1 > 3600) { timerTextP1.text = "∞"; timerTextP2.text = "∞"; }
         else if (!stoptime)
         {
             
-                if (LongGameContObj.GetComponent<LongGameCont>().player == 1)
+                if (tempPlayer == 1)
                 {
                     totalTimeP1 -= Time.deltaTime;
                     seconds = (int)totalTimeP1;
@@ -77,7 +80,7 @@ public class ContPlayTimeTurn : MonoBehaviour
                     string tempS = Math.Abs(seconds % 60).ToString("D2");
                     timerTextP1.text = fu + tempM + ":" + tempS;
                 }
-                else if (LongGameContObj.GetComponent<LongGameCont>().player == -1)
+                else if (tempPlayer == -1)
                 {
                     totalTimeP2 -= Time.deltaTime;
                     seconds = (int)totalTimeP2;
@@ -94,7 +97,6 @@ public class ContPlayTimeTurn : MonoBehaviour
     }
     public void changePlayerBg() 
     {
-        int tempPlayer = 0;
         if (gt == 9)
         {
             tempPlayer = LongGameContObj.GetComponent<LongGameCont>().player;
@@ -122,10 +124,12 @@ public class ContPlayTimeTurn : MonoBehaviour
 
         totalTimeP1 = ptime;
         totalTimeP2 = ptime;
+        tempPlayer = Fplayer;
         gt = gametype;
         seconds = (int)ptime;
         string tempM = Math.Abs(seconds / 60).ToString("D2");
         string tempS = Math.Abs(seconds % 60).ToString("D2");
+        timerTextP1.text = tempM + ":" + tempS;
         timerTextP2.text = tempM + ":" + tempS;
         if (gt == 9)
         {

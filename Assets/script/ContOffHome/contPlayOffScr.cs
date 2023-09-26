@@ -3,13 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using TMPro;
 using UnityEngine.AddressableAssets;
 
 public class contPlayOffScr : MonoBehaviour
 {
-
-    [SerializeField] GameObject shortGame;
-    [SerializeField] GameObject longGame;
     [SerializeField] GameObject shortGameRing;
     [SerializeField] GameObject longGameRing;
     [SerializeField] GameObject mainCanvas;
@@ -17,6 +15,7 @@ public class contPlayOffScr : MonoBehaviour
     [SerializeField] GameObject LongObjCollection;
     [SerializeField] GameObject ShortObjCollection;
     [SerializeField] GameObject CameraObj;
+    [SerializeField ] TextMeshProUGUI gameTitle;
 
 
     int Player1Deck = 0;
@@ -37,6 +36,7 @@ public class contPlayOffScr : MonoBehaviour
     public void clickShort()
     {
         gt = 6;
+        gameTitle.text = "36 Mode";
         shortGameRing.SetActive(true);
         longGameRing.SetActive(false);
     }
@@ -44,6 +44,7 @@ public class contPlayOffScr : MonoBehaviour
     public void clickLong()
     {
         gt = 9;
+        gameTitle.text = "81 Mode";
         shortGameRing.SetActive(false);
         longGameRing.SetActive(true);
         

@@ -236,6 +236,10 @@ public class BoardOnJsonRecord
     public int player1Type;
     public int player2Type;
 
+    public int p1DEType;
+    public float p1DEColor;
+    public int p2DEType;
+    public float p2DEColor;
     public int gameType;
 }
 [SerializeField]

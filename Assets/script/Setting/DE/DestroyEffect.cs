@@ -199,7 +199,7 @@ public class DestroyEffect : MonoBehaviour
 			if (GO.CompareTag("KingKoma")) { currentInstance.transform.localScale = new Vector3(1f, 1f, 1f); }
 			else { currentInstance.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f); }
 
-			var color = Hue(DEcolor);
+			var color = Hue(DEcolor * 6);
 			var rend = currentInstance.GetComponentsInChildren<Renderer>();
 			foreach (var r in rend)
 			{

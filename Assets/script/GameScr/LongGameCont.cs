@@ -49,7 +49,11 @@ public class LongGameCont : MonoBehaviour
     bool shougiplayer2clicked = false;
 
     public int Player1Type;
+    public int p1DEType;
+    public float p1DEColor;
     public int Player2Type;
+    public int p2DEType;
+    public float p2DEColor;
 
 
 
@@ -184,21 +188,6 @@ public class LongGameCont : MonoBehaviour
     //Color
     Color noColor = new Color(0.0f, 0.0f, 0.0f, 0.0f);
     Color whiteGray = new Color(0.9f, 0.9f, 0.9f, 1.0f);
-    private void Awake()
-    {
-
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-    void Update()
-    {
-        
-
-    }
     public void startSetUp()
     {
         temp = new LongBoard();
@@ -208,7 +197,6 @@ public class LongGameCont : MonoBehaviour
         face = new LongBoard();
         recordplaying = new BoardOnJsonRecord();
         LongKomaClass.CallStart();
-        GameBasisObj.GetComponent<GameBasisScr>().setDE();
         LongObjCollection.SetActive(true);
     }
 
@@ -220,15 +208,33 @@ public class LongGameCont : MonoBehaviour
         ContPlayTimeObj.GetComponent<ContPlayTimeTurn>().changePlayerBg();
         startSetUp();
 
-        LongKomaClass.CallStart();
         cleanBoard();
         cleanBoardFace();
         updateKinshi(1);
         updateKinshi(-1);
 
 
+        //set Player info
         Player1Type = p1Deck;
         Player2Type = p2Deck;
+        
+        string datastr = "";
+        StreamReader reader;
+        reader = new StreamReader(Application.dataPath + "/jsonfiles/HomeData.json");
+        datastr = reader.ReadToEnd();
+        reader.Close();
+        HomeDataClass tempHDJson = new HomeDataClass();
+        tempHDJson = JsonUtility.FromJson<HomeDataClass>(datastr);
+
+        p1DEType = tempHDJson.DEP1Type;
+        p1DEColor = tempHDJson.DEP1Color;
+        p2DEType = tempHDJson.DEP2Type;
+        p2DEColor = tempHDJson.DEP2Color;
+
+        GameBasisObj.GetComponent<GameBasisScr>().p1DEType = p1DEType;
+        GameBasisObj.GetComponent<GameBasisScr>().p1DEColor = p1DEColor;
+        GameBasisObj.GetComponent<GameBasisScr>().p2DEType = p2DEType;
+        GameBasisObj.GetComponent<GameBasisScr>().p2DEColor = p2DEColor;
 
         //0 chess
         //1 shougi
@@ -304,6 +310,10 @@ public class LongGameCont : MonoBehaviour
         recordplaying.gameType = 9;
         recordplaying.player1Type = Player1Type;
         recordplaying.player2Type = Player2Type;
+        recordplaying.p1DEType = p1DEType;
+        recordplaying.p1DEColor = p1DEColor;
+        recordplaying.p2DEType = p2DEType;
+        recordplaying.p2DEColor = p2DEColor;
 
         recordplaying.P1sideTime.Add((int)ContPlayTimeObj.GetComponent<ContPlayTimeTurn>().totalTimeP1);
         recordplaying.P2sideTime.Add((int)ContPlayTimeObj.GetComponent<ContPlayTimeTurn>().totalTimeP2);

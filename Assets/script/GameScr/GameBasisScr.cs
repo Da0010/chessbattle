@@ -6,10 +6,10 @@ using UnityEngine;
 
 public class GameBasisScr : MonoBehaviour
 {
-    public int P1DEType;
-    public int P2DEType;
-    public float P1DEColor;
-    public float P2DEColor;
+    public int p1DEType;
+    public int p2DEType;
+    public float p1DEColor;
+    public float p2DEColor;
 
     [SerializeField] GameObject DEObj;
 
@@ -129,28 +129,14 @@ public class GameBasisScr : MonoBehaviour
         else if (TTObj.GetComponent<ContPlayTimeTurn>().gt == 6) { SGObj.GetComponent<ShortGameCont>().shougiKeepKoma(); }
     }
 
-    public void setDE() 
-    {
-        HomeDataClass temp = new HomeDataClass();
-        string datastr = "";
-        StreamReader reader;
-        reader = new StreamReader(Application.dataPath + "/jsonfiles/HomeData" + ".json");
-        datastr = reader.ReadToEnd();
-        reader.Close();
-        temp = JsonUtility.FromJson<HomeDataClass>(datastr);
-
-       P1DEColor = temp.DEP1Color; P1DEType = temp.DEP1Type; 
-       P2DEColor = temp.DEP2Color; P2DEType = temp.DEP2Type; 
-    }
-
 
 
     public void ShowDE(GameObject DO,float timeInvoke,int pside) 
     {
         float tempColor = 0;
         int tempType = 0;
-        if (pside == 1) { tempColor = P2DEColor; tempType = P2DEType; }
-        else if (pside == -1) { tempColor = P1DEColor; tempType = P1DEType; }
+        if (pside == 1) { tempColor = p2DEColor; tempType = p2DEType; }
+        else if (pside == -1) { tempColor = p1DEColor; tempType = p1DEType; }
         StartCoroutine(DelayMethod(timeInvoke, () =>
         {
             DEObj.GetComponent<DestroyEffect>().showDEByObj(DO, tempType, tempColor);

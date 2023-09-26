@@ -49,7 +49,11 @@ public class ShortGameCont : MonoBehaviour
     bool shougiplayer2clicked = false;
 
     public int Player1Type;
+    public int p1DEType;
+    public float p1DEColor;
     public int Player2Type;
+    public int p2DEType;
+    public float p2DEColor;
 
 
 
@@ -147,34 +151,53 @@ public class ShortGameCont : MonoBehaviour
         recordplaying = new BoardOnJsonRecord();
         ShortKomaClass = new HowMoveShortKoma();
         face = new ShortBoard();
-        recordplaying = new BoardOnJsonRecord();
         ShortKomaClass.CallStart();
-        GameBasisObj.GetComponent<GameBasisScr>().setDE();
         ShortObjCollection.SetActive(true);
     }
 
     public void startMainGame(int p1Deck, int p2Deck, int Fplayer, int Gt)
     {
-
+        //set up gamePanel
         ContPlayTimeObj.GetComponent<ContPlayTimeTurn>().starttimer();
         player = Fplayer;
         ContPlayTimeObj.GetComponent<ContPlayTimeTurn>().turn = -1;
         ContPlayTimeObj.GetComponent<ContPlayTimeTurn>().changePlayerBg();
-        startSetUp();
 
+        //clean Board
+        startSetUp();
         cleanBoard();
         cleanBoardFace();
         updateKinshi(1);
         updateKinshi(-1);
         startSetUp();
 
+        //set Player info
         Player1Type = p1Deck;
         Player2Type = p2Deck;
+        
+        string datastr = "";
+        StreamReader reader;
+        reader = new StreamReader(Application.dataPath + "/jsonfiles/HomeData.json");
+        datastr = reader.ReadToEnd();
+        reader.Close();
+        HomeDataClass tempHDJson = new HomeDataClass();
+        tempHDJson = JsonUtility.FromJson<HomeDataClass>(datastr);
+
+        p1DEType = tempHDJson.DEP1Type;
+        p1DEColor = tempHDJson.DEP1Color;
+        p2DEType = tempHDJson.DEP2Type;
+        p2DEColor = tempHDJson.DEP2Color;
+
+        GameBasisObj.GetComponent<GameBasisScr>().p1DEType = p1DEType;
+        GameBasisObj.GetComponent<GameBasisScr>().p1DEColor= p1DEColor;
+        GameBasisObj.GetComponent<GameBasisScr>().p2DEType = p2DEType;
+        GameBasisObj.GetComponent<GameBasisScr>().p2DEColor = p2DEColor;
 
         //0 chess
         //1 shougi
         //2 xiangxi
 
+        //put Koma
         string DeckName = "ShortDeck" + p1Deck.ToString();
         Addressables.LoadAssetAsync<TextAsset>(DeckName).Completed += handle =>
         {
@@ -246,6 +269,10 @@ public class ShortGameCont : MonoBehaviour
         recordplaying.gameType = 6;
         recordplaying.player1Type = Player1Type;
         recordplaying.player2Type = Player2Type;
+        recordplaying.p1DEType = p1DEType;
+        recordplaying.p1DEColor = p1DEColor;
+        recordplaying.p2DEType = p2DEType;
+        recordplaying.p2DEColor = p2DEColor;
 
         recordplaying.P1sideTime.Add((int)ContPlayTimeObj.GetComponent<ContPlayTimeTurn>().totalTimeP1);
         recordplaying.P2sideTime.Add((int)ContPlayTimeObj.GetComponent<ContPlayTimeTurn>().totalTimeP2);

@@ -31,6 +31,38 @@ public class DestroyEffect : MonoBehaviour
 	[SerializeField] GameObject[] P1DEButton;
 	[SerializeField] GameObject[] P2DEButton;
 	[SerializeField] GameObject cameraObj;
+
+	void Start(){
+		resetSlection();
+	}
+
+	public void resetSlection(){
+		string datastr = "";
+        StreamReader reader;
+        reader = new StreamReader(Application.dataPath + "/jsonfiles/HomeData.json");
+        datastr = reader.ReadToEnd();
+        reader.Close();
+        HomeDataClass tempJson = new HomeDataClass();
+        tempJson = JsonUtility.FromJson<HomeDataClass>(datastr);
+
+
+		effectColorP1 = tempJson.DEP1Color;
+		effectTypeP1 = tempJson.DEP1Type;
+		effectColorP2 = tempJson.DEP2Color;
+		effectTypeP2 = tempJson.DEP2Type;
+
+		selectEffectP1(effectTypeP1);
+		selectEffectP2(effectTypeP2);
+		
+		P1DEButton[effectTypeP1].GetComponent<RawImage>().color = Hue(effectColorP1 * 6);
+		colorSliderP1.value = effectColorP1;
+
+		P2DEButton[effectTypeP2].GetComponent<RawImage>().color = Hue(effectColorP2 * 6);
+		colorSliderP2.value = effectColorP2;
+	}
+
+
+
 	public void showDE(int n)
 	{	
 		cameraObj.GetComponent<CameraCont>().resetCamera();
@@ -63,15 +95,9 @@ public class DestroyEffect : MonoBehaviour
 
 		
 	}
-	void Reactivate()
-	{
-		currentInstance.SetActive(false);
-		currentInstance.SetActive(true);
-	}
 
 	public void saveDE(int n) 
 	{
-
 		HomeDataClass temp = new HomeDataClass();
 		string datastr = "";
 		StreamReader reader;
@@ -80,8 +106,8 @@ public class DestroyEffect : MonoBehaviour
 		reader.Close();
 		temp = JsonUtility.FromJson<HomeDataClass>(datastr);
 
-		if (n == 1) { temp.DEP1Color = effectColorP1 * 6; temp.DEP1Type = effectTypeP1; }
-		if (n == 2) { temp.DEP2Color = effectColorP2 * 6; temp.DEP2Type = effectTypeP2; }
+		if (n == 1) { temp.DEP1Color = effectColorP1; temp.DEP1Type = effectTypeP1; }
+		if (n == 2) { temp.DEP2Color = effectColorP2; temp.DEP2Type = effectTypeP2; }
 
 		string jsonstr = LitJson.JsonMapper.ToJson(temp);
 		StreamWriter writer = new StreamWriter(Application.dataPath + "/jsonfiles/HomeData" + ".json", false);
@@ -162,6 +188,7 @@ public class DestroyEffect : MonoBehaviour
 		selectEffectP1(effectTypeP1);
 		selectEffectP2(effectTypeP2);
 	}
+	
 	public void showDEByObj(GameObject GO, int DEtype, float DEcolor) 
 	{
 		if (DEtype != 0)
@@ -194,6 +221,15 @@ public class DestroyEffect : MonoBehaviour
 		}
 	}
 
+
+}
+
+public class HomeDataClass 
+{
+    public float DEP1Color;
+    public float DEP2Color;
+    public int DEP1Type;
+    public int DEP2Type;
 
 }
 

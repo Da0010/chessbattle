@@ -8,10 +8,10 @@ using UnityEngine.UI;
 public class DestroyEffect : MonoBehaviour
 {
 
-	public int effectTypeP1 = 3;
-	public float effectColorP1 = 3;
-	public int effectTypeP2 = 3;
-	public float effectColorP2 = 3;
+	public int effectTypeP1 = 0;
+	public float effectColorP1 = 0;
+	public int effectTypeP2 = 0;
+	public float effectColorP2 = 0;
 
 	
 
@@ -30,8 +30,10 @@ public class DestroyEffect : MonoBehaviour
 
 	[SerializeField] GameObject[] P1DEButton;
 	[SerializeField] GameObject[] P2DEButton;
+	[SerializeField] GameObject cameraObj;
 	public void showDE(int n)
-	{
+	{	
+		cameraObj.GetComponent<CameraCont>().resetCamera();
 		float colorHUE = 0;
 		int tempeffectType = 0;
 		if (n == 1) { colorHUE = effectColorP1 * 6; tempeffectType = effectTypeP1; }
@@ -55,6 +57,7 @@ public class DestroyEffect : MonoBehaviour
 			if (light != null) light.color = color;
 			InvokeRepeating("Reactivate", currentInstance.GetComponent<CFX_DemoReactivator>().TimeDelayToReactivate, currentInstance.GetComponent<CFX_DemoReactivator>().TimeDelayToReactivate);
 		}
+
 		HC.SetActive(false);
 		DEC.SetActive(true);
 
@@ -114,7 +117,10 @@ public class DestroyEffect : MonoBehaviour
 		for (int i = 0; i < 30; i++)
 		{
 			if (i != n)
-			P1DEButton[i].GetComponent<RawImage>().CrossFadeAlpha(0f,0.3f,false);
+			{
+				P1DEButton[i].GetComponent<RawImage>().color = new Color (0,0,0,0);
+				P1DEButton[i].GetComponent<RawImage>().CrossFadeAlpha(0f,0.3f,false);
+			}
 		}
 	}
 	public void selectEffectP2(int n)
@@ -131,7 +137,10 @@ public class DestroyEffect : MonoBehaviour
 		for (int i = 0; i < 30; i++)
 		{
 			if (i != n)
+			{
+				P2DEButton[i].GetComponent<RawImage>().color = new Color (0,0,0,0);
 				P2DEButton[i].GetComponent<RawImage>().CrossFadeAlpha(0f, 0.3f, false);
+			}
 		}
 	}
 

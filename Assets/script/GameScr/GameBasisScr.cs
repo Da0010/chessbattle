@@ -149,8 +149,8 @@ public class GameBasisScr : MonoBehaviour
     {
         float tempColor = 0;
         int tempType = 0;
-        if (pside == 1) { tempColor = P1DEColor; tempType = P1DEType; }
-        else if (pside == -1) { tempColor = P2DEColor; tempType = P2DEType; }
+        if (pside == 1) { tempColor = P2DEColor; tempType = P2DEType; }
+        else if (pside == -1) { tempColor = P1DEColor; tempType = P1DEType; }
         StartCoroutine(DelayMethod(timeInvoke, () =>
         {
             DEObj.GetComponent<DestroyEffect>().showDEByObj(DO, tempType, tempColor);

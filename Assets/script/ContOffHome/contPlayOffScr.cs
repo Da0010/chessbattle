@@ -9,7 +9,9 @@ using UnityEngine.AddressableAssets;
 public class contPlayOffScr : MonoBehaviour
 {
     [SerializeField] GameObject shortGameRing;
+    [SerializeField] TextMeshProUGUI shortGameText;
     [SerializeField] GameObject longGameRing;
+    [SerializeField] TextMeshProUGUI longGameText;
     [SerializeField] GameObject mainCanvas;
     [SerializeField] GameObject gamePanel;
     [SerializeField] GameObject LongObjCollection;
@@ -39,6 +41,8 @@ public class contPlayOffScr : MonoBehaviour
         gameTitle.text = "36 Mode";
         shortGameRing.SetActive(true);
         longGameRing.SetActive(false);
+        shortGameText.color = new Color(1.0f,1.0f,1.0f,1.0f);
+        longGameText.color = new Color(1.0f,1.0f,1.0f,0.5f);
     }
 
     public void clickLong()
@@ -47,6 +51,8 @@ public class contPlayOffScr : MonoBehaviour
         gameTitle.text = "81 Mode";
         shortGameRing.SetActive(false);
         longGameRing.SetActive(true);
+        shortGameText.color = new Color(1.0f,1.0f,1.0f,0.5f);
+        longGameText.color = new Color(1.0f,1.0f,1.0f,1f);
         
     }
     public void clickPlay()

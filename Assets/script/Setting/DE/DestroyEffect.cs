@@ -65,6 +65,7 @@ public class DestroyEffect : MonoBehaviour
 
 	public void showDE(int n)
 	{	
+		cameraObj.transform.localScale = new Vector3(0.7f,0.7f,0.7f);
 		cameraObj.GetComponent<CameraCont>().resetCamera();
 		float colorHUE = 0;
 		int tempeffectType = 0;

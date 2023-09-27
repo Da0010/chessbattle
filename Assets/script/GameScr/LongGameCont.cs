@@ -14,6 +14,7 @@ public class LongGameCont : MonoBehaviour
 {
     [SerializeField] GameObject ContPlayTimeObj;
     [SerializeField] GameObject GameBasisObj;
+    [SerializeField] GameObject cameraObj;
     public LongBoard temp;//now board
     public LongBoardOnJson tempJson;
     LongBoard openingBan;
@@ -198,6 +199,7 @@ public class LongGameCont : MonoBehaviour
         recordplaying = new BoardOnJsonRecord();
         LongKomaClass.CallStart();
         LongObjCollection.SetActive(true);
+        cameraObj.transform.localScale = new Vector3(1f,1f,1f);
     }
 
     public void startMainGame(int p1Deck, int p2Deck, int Fplayer, int Gt) {

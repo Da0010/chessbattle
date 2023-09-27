@@ -14,6 +14,7 @@ public class ShortGameCont : MonoBehaviour
 {
     [SerializeField] GameObject ContPlayTimeObj;
     [SerializeField] GameObject GameBasisObj;
+    [SerializeField] GameObject cameraObj;
     public ShortBoard temp;//now board
     public ShortBoardOnJson tempJson;
     ShortBoard openingBan;
@@ -153,6 +154,7 @@ public class ShortGameCont : MonoBehaviour
         face = new ShortBoard();
         ShortKomaClass.CallStart();
         ShortObjCollection.SetActive(true);
+        cameraObj.transform.localScale = new Vector3(0.65f,0.65f,0.65f);
     }
 
     public void startMainGame(int p1Deck, int p2Deck, int Fplayer, int Gt)

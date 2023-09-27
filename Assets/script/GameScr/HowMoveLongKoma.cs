@@ -431,6 +431,7 @@ public class HowMoveLongKoma
         }
 
         LongGameContObj.GetComponent<LongGameCont>().tempside *= -1;
+        LongGameContObj.GetComponent<LongGameCont>().cleanBoardFace();
 
 
         for (int i = 0; i < 9; i++)

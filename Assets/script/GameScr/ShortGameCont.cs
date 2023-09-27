@@ -421,7 +421,9 @@ public class ShortGameCont : MonoBehaviour
         ShowCheckOrNot();
         if (player == 1) { player = -1; ContPlayTimeObj.GetComponent<ContPlayTimeTurn>().changePlayerBg(); if (p1ShougiKinshi != 0) { if (p1ShougiKinshi != 0) { p1ShougiKinshi--; } updateKinshi(1); } }
         else { player = 1; ContPlayTimeObj.GetComponent<ContPlayTimeTurn>().changePlayerBg(); if (p2ShougiKinshi != 0) { if (p2ShougiKinshi != 0) { p2ShougiKinshi--; } updateKinshi(-1); } }
-        cleanBoardFace(); saveRecord(); ContPlayTimeObj.GetComponent<ContPlayTimeTurn>().checkBeforeNext();
+        cleanBoardFace(); 
+        saveRecord(); 
+        ContPlayTimeObj.GetComponent<ContPlayTimeTurn>().checkBeforeNext();
         if (changeTurn) { ContPlayTimeObj.GetComponent<ContPlayTimeTurn>().starttimer(); }
     }
     public void moveKoma()
@@ -860,7 +862,11 @@ public class ShortGameCont : MonoBehaviour
         {
             for (int j = 0; j < 6; j++)
             {
-                if (findBoardFacePosition(i, j).GetComponent<SpriteRenderer>().color != noColor) { findBoardFacePosition(i, j).GetComponent<SpriteRenderer>().color = noColor; findBoardFacePosition(i, j).GetComponent<SpriteRenderer>().sprite = null; face.ban[i, j] = 0; }
+                if (findBoardFacePosition(i, j).GetComponent<SpriteRenderer>().color != noColor) 
+                {   findBoardFacePosition(i, j).GetComponent<SpriteRenderer>().color = noColor; 
+                    findBoardFacePosition(i, j).GetComponent<SpriteRenderer>().sprite = null;
+                    face.ban[i, j] = 0; 
+                }
             }
         }
 
@@ -895,7 +901,11 @@ public class ShortGameCont : MonoBehaviour
             {
                 if (player*temp.ban[i, j] == -6 || player * temp.ban[i, j] == -18 || player * temp.ban[i, j] == -27) 
                 {
-                    if (!ShortKomaClass.checkCheckmait(i, j)) { GameObject ContPlayCanvasObj = GameObject.Find("ContCanvasObj"); ContPlayCanvasObj.GetComponent<ContPlayCanvas>().openCheckModal(); SoundObj.GetComponent<MakeSE>().shotCheckSound();}
+                    if (!ShortKomaClass.checkCheckmait(i, j)) {
+                         GameObject ContPlayCanvasObj = GameObject.Find("ContCanvasObj"); 
+                         ContPlayCanvasObj.GetComponent<ContPlayCanvas>().openCheckModal(); 
+                         SoundObj.GetComponent<MakeSE>().shotCheckSound();
+                        }
                     break;
                 }
 

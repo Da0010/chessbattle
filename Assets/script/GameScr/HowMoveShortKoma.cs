@@ -412,6 +412,7 @@ public class HowMoveShortKoma
     }
     public bool checkCheckmait(int a, int b)
     {
+        //チェックされてない時TRUE
         ShortBoard temp = ShortGameContObj.GetComponent<ShortGameCont>().temp;
         int tempside = ShortGameContObj.GetComponent<ShortGameCont>().tempside;
 
@@ -432,8 +433,7 @@ public class HowMoveShortKoma
         }
 
         ShortGameContObj.GetComponent<ShortGameCont>().tempside *= -1;
-
-
+        ShortGameContObj.GetComponent<ShortGameCont>().cleanBoardFace();
         for (int i = 0; i < 6; i++)
         {
             for (int j = 0; j < 6; j++)
@@ -471,8 +471,8 @@ public class HowMoveShortKoma
                     else if (tempfindAttack == 35 || tempfindAttack == -35) { findShougiKinMove(i, j); }
                     else if (tempfindAttack == 36 || tempfindAttack == -36) { findShougiKinMove(i, j); }
                 }
-
-                if (ShortGameContObj.GetComponent<ShortGameCont>().face.ban[a, b] == -2 * c) { result = false; }
+                
+                if (ShortGameContObj.GetComponent<ShortGameCont>().face.ban[a, b] == -2 * c) { result = false;}
                 ShortGameContObj.GetComponent<ShortGameCont>().cleanBoardFace();
             }
         }
@@ -480,6 +480,7 @@ public class HowMoveShortKoma
         ShortGameContObj.GetComponent<ShortGameCont>().tempside *= -1;
 
         ShortGameContObj.GetComponent<ShortGameCont>().temp.ban[a, b] = saveKoma;
+        
         return result;
     }
     void showCastlePossible(int a, int b)

@@ -169,7 +169,6 @@ public class ShortGameCont : MonoBehaviour
         cleanBoardFace();
         updateKinshi(1);
         updateKinshi(-1);
-        startSetUp();
 
         //set Player info
         Player1Type = p1Deck;
@@ -187,11 +186,9 @@ public class ShortGameCont : MonoBehaviour
         p1DEColor = tempHDJson.DEP1Color;
         p2DEType = tempHDJson.DEP2Type;
         p2DEColor = tempHDJson.DEP2Color;
+        changeBasisDE();
 
-        GameBasisObj.GetComponent<GameBasisScr>().p1DEType = p1DEType;
-        GameBasisObj.GetComponent<GameBasisScr>().p1DEColor= p1DEColor;
-        GameBasisObj.GetComponent<GameBasisScr>().p2DEType = p2DEType;
-        GameBasisObj.GetComponent<GameBasisScr>().p2DEColor = p2DEColor;
+
 
         //0 chess
         //1 shougi
@@ -229,6 +226,13 @@ public class ShortGameCont : MonoBehaviour
 
 
         Invoke(nameof(loadOpening), 1f);
+    }
+
+    public void changeBasisDE(){
+        GameBasisObj.GetComponent<GameBasisScr>().p1DEType = p1DEType;
+        GameBasisObj.GetComponent<GameBasisScr>().p1DEColor= p1DEColor;
+        GameBasisObj.GetComponent<GameBasisScr>().p2DEType = p2DEType;
+        GameBasisObj.GetComponent<GameBasisScr>().p2DEColor = p2DEColor;
     }
 
 

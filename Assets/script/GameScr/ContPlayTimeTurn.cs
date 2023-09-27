@@ -213,6 +213,8 @@ public class ContPlayTimeTurn : MonoBehaviour
 
         
 
+        
+
         if (tempJson.gameType == 9)
         {
             LongGameContObj.SetActive(true);
@@ -221,7 +223,6 @@ public class ContPlayTimeTurn : MonoBehaviour
             turn = tempJson.recordKomaBoard.Count- 1;
             LongObjCollection.SetActive(true);
             LongGameContObj.GetComponent<LongGameCont>().recordplaying = JsonUtility.FromJson<BoardOnJsonRecord>(datastr);
-            
             showRecord();
         }
         else if (tempJson.gameType == 6)
@@ -265,6 +266,13 @@ public class ContPlayTimeTurn : MonoBehaviour
             tempLongClass.updateKinshi(-1);
             tempLongClass.Player1Type = tempLongClass.recordplaying.player1Type;
             tempLongClass.Player2Type = tempLongClass.recordplaying.player2Type;
+            tempLongClass.p1DEType = tempLongClass.recordplaying.p1DEType;
+            tempLongClass.p2DEType = tempLongClass.recordplaying.p2DEType;
+            tempLongClass.p1DEColor = tempLongClass.recordplaying.p1DEColor;
+            tempLongClass.p2DEColor = tempLongClass.recordplaying.p2DEColor;
+            tempLongClass.changeBasisDE();
+            
+            
 
             tempLongClass.player = tempLongClass.recordplaying.Fplayer[turn];
             changePlayerBg();
@@ -319,6 +327,15 @@ public class ContPlayTimeTurn : MonoBehaviour
             tempShortClass.p2ShougiKinshi = tempShortClass.recordplaying.p2ShougiKinshi[turn];
             tempShortClass.updateKinshi(1);
             tempShortClass.updateKinshi(-1);
+            tempShortClass.Player1Type = tempShortClass.recordplaying.player1Type;
+            tempShortClass.Player2Type = tempShortClass.recordplaying.player2Type;
+            tempShortClass.p1DEType = tempShortClass.recordplaying.p1DEType;
+            tempShortClass.p2DEType = tempShortClass.recordplaying.p2DEType;
+            tempShortClass.p1DEColor = tempShortClass.recordplaying.p1DEColor;
+            tempShortClass.p2DEColor = tempShortClass.recordplaying.p2DEColor;
+            tempShortClass.changeBasisDE();
+
+
 
             tempShortClass.player = tempShortClass.recordplaying.Fplayer[turn];
             changePlayerBg();

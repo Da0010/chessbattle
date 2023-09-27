@@ -97,6 +97,12 @@ public class DestroyEffect : MonoBehaviour
 		
 	}
 
+	void Reactivate()
+	{
+		currentInstance.SetActive(false);
+		currentInstance.SetActive(true);
+	}
+
 	public void saveDE(int n) 
 	{
 		HomeDataClass temp = new HomeDataClass();

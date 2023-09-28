@@ -767,9 +767,9 @@ public class ShortGameCont : MonoBehaviour
 
     void doCastling()
     {
-        if (tempx == 0 && tempy == 0) { SubCastling(0, 2, 0, 0); SubCastling(0, 0, 0, 1); }
+        if (tempx == 0 && tempy == 0) {  SubCastling(0, 0, 0, 1); SubCastling(0, 2, 0, 0); }
         else if (tempx == 0 && tempy == 4) { SubCastling(0, 2, 0, 4); SubCastling(0, 5, 0, 3); }
-        else if (tempx == 5 && tempy == 5) { SubCastling(5, 3, 5, 5); SubCastling(5, 5, 5, 4); }
+        else if (tempx == 5 && tempy == 5) {  SubCastling(5, 5, 5, 4); SubCastling(5, 3, 5, 5);}
         else if (tempx == 5 && tempy == 1) { SubCastling(5, 3, 5, 1); SubCastling(5, 0, 5, 2); }
         doEnd();
     }
@@ -781,6 +781,7 @@ public class ShortGameCont : MonoBehaviour
         temp.ban[movexBefore, moveyBefore] = 0;
         movingObj = tempGameObj[movexBefore, moveyBefore];
         //itwenen
+        Debug.Log(tempKoma);
 
         var moveHash = new Hashtable();
         float x = (float)((2.5 - moveyAfter) * 0.1);

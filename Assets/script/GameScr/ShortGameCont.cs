@@ -154,7 +154,7 @@ public class ShortGameCont : MonoBehaviour
         face = new ShortBoard();
         ShortKomaClass.CallStart();
         ShortObjCollection.SetActive(true);
-        cameraObj.transform.localScale = new Vector3(0.65f,0.65f,0.65f);
+        cameraObj.transform.localScale = new Vector3(0.8f,0.8f,0.8f);
     }
 
     public void startMainGame(int p1Deck, int p2Deck, int Fplayer, int Gt)

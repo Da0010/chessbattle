@@ -64,7 +64,7 @@ public class CameraCont : MonoBehaviour
     }
 
     public void resetCamera(){
-        this.transform.eulerAngles = new Vector3(12,180,0);
+        this.transform.eulerAngles = new Vector3(28,180,0);
         this.transform.position = new Vector3(0,1.05f,0);
     }
 }

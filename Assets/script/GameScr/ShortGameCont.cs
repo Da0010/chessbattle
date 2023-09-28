@@ -781,7 +781,6 @@ public class ShortGameCont : MonoBehaviour
         temp.ban[movexBefore, moveyBefore] = 0;
         movingObj = tempGameObj[movexBefore, moveyBefore];
         //itwenen
-        Debug.Log(tempKoma);
 
         var moveHash = new Hashtable();
         float x = (float)((2.5 - moveyAfter) * 0.1);

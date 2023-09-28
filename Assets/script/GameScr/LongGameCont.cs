@@ -35,6 +35,7 @@ public class LongGameCont : MonoBehaviour
 
     public int p1ShougiKinshi;
     public int p2ShougiKinshi;
+    [SerializeField] shougiHande = 2;
     [SerializeField] GameObject p1KinshiGazou;
     [SerializeField] GameObject p2KinshiGazou;
 
@@ -572,7 +573,7 @@ public class LongGameCont : MonoBehaviour
                     }
                     else
                     {
-                        p1ShougiKinshi = 3;
+                        p1ShougiKinshi = shougiHande;
                         KeepShougiKoma();
                     }
                 }
@@ -585,7 +586,7 @@ public class LongGameCont : MonoBehaviour
                     }
                     else
                     {
-                        p2ShougiKinshi = 3;
+                        p2ShougiKinshi = shougiHande;
                         KeepShougiKoma();
                     }
                 }
@@ -658,7 +659,7 @@ public class LongGameCont : MonoBehaviour
         GameBasisObj.GetComponent<GameBasisScr>().ShowDE(killedObj, 1, player);
         if (player == 1)
         {
-            p1ShougiKinshi = 3; 
+            p1ShougiKinshi = shougiHande; 
             if (player1sideHave != 0) { GameBasisObj.GetComponent<GameBasisScr>().ShowDE(player1sideHaveObj, 0, player); }
             player1sideHave = -1 * killedObjNum;
 
@@ -680,7 +681,7 @@ public class LongGameCont : MonoBehaviour
         }
         else
         {
-            p2ShougiKinshi = 3; 
+            p2ShougiKinshi = shougiHande; 
             if (player2sideHave != 0) { GameBasisObj.GetComponent<GameBasisScr>().ShowDE(player2sideHaveObj, 0, player); }
             player2sideHave = -1 * killedObjNum;
 

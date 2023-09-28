@@ -35,7 +35,7 @@ public class LongGameCont : MonoBehaviour
 
     public int p1ShougiKinshi;
     public int p2ShougiKinshi;
-    [SerializeField] shougiHande = 2;
+    [SerializeField] int shougiHande = 2;
     [SerializeField] GameObject p1KinshiGazou;
     [SerializeField] GameObject p2KinshiGazou;
 

@@ -54,7 +54,6 @@ public class ContPlayTimeTurn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         if (totalTimeP1 > 3600) { timerTextP1.text = "∞"; timerTextP2.text = "∞"; }
         else if (!stoptime)
         {
@@ -89,6 +88,36 @@ public class ContPlayTimeTurn : MonoBehaviour
                 }
         }
         
+    }
+    void showTime(int player){
+        if (player == 1)
+        {
+            totalTimeP1 -= Time.deltaTime;
+            seconds = (int)totalTimeP1;
+            string fu = "";
+            if (seconds < 0) { 
+                if (!P1TimeOver){P1TimeOver = true; SoundObj.GetComponent<MakeSE>().shotTimeOverSound();} 
+                fu = "-"; timerTextP1.color = Color.red;    
+            }
+            else { fu = ""; timerTextP1.color = Color.white; }
+            string tempM = Math.Abs(seconds / 60).ToString("D2");
+            string tempS = Math.Abs(seconds % 60).ToString("D2");
+            timerTextP1.text = fu + tempM + ":" + tempS;
+        }
+        else if (player== -1)
+        {
+            totalTimeP2 -= Time.deltaTime;
+            seconds = (int)totalTimeP2;
+            string fu = "";
+            if (seconds < 0) {
+                fu = "-"; timerTextP2.color = Color.red;
+                if (!P2TimeOver){P2TimeOver = true; SoundObj.GetComponent<MakeSE>().shotTimeOverSound();}      
+            }
+            else { fu = ""; timerTextP2.color = Color.white; }
+            string tempM = Math.Abs(seconds / 60).ToString("D2");
+            string tempS = Math.Abs(seconds % 60).ToString("D2");
+            timerTextP2.text = fu + tempM + ":" + tempS;
+        }
     }
     public void changePlayerBg() 
     {
@@ -262,6 +291,11 @@ public class ContPlayTimeTurn : MonoBehaviour
             tempLongClass.player2RookLeftMove = tempLongClass.recordplaying.P2LeftRookMove[turn];
             tempLongClass.p1ShougiKinshi = tempLongClass.recordplaying.p1ShougiKinshi[turn];
             tempLongClass.p2ShougiKinshi = tempLongClass.recordplaying.p2ShougiKinshi[turn];
+            totalTimeP1 = tempLongClass.recordplaying.P1sideTime[turn];
+            totalTimeP2 = tempLongClass.recordplaying.P2sideTime[turn];
+            showTime(1);
+            showTime(-1);
+            
             tempLongClass.updateKinshi(1);
             tempLongClass.updateKinshi(-1);
             tempLongClass.Player1Type = tempLongClass.recordplaying.player1Type;
@@ -327,6 +361,12 @@ public class ContPlayTimeTurn : MonoBehaviour
             tempShortClass.p2ShougiKinshi = tempShortClass.recordplaying.p2ShougiKinshi[turn];
             tempShortClass.updateKinshi(1);
             tempShortClass.updateKinshi(-1);
+            totalTimeP1 = tempShortClass.recordplaying.P1sideTime[turn];
+            totalTimeP2 = tempShortClass.recordplaying.P2sideTime[turn];
+            showTime(1);
+            showTime(-1);
+            
+
             tempShortClass.Player1Type = tempShortClass.recordplaying.player1Type;
             tempShortClass.Player2Type = tempShortClass.recordplaying.player2Type;
             tempShortClass.p1DEType = tempShortClass.recordplaying.p1DEType;
